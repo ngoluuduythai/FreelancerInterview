@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2017 Jeremy Tecson
   ~
   ~ This file is subject to the terms and conditions defined in
@@ -10,7 +9,10 @@
   package="com.jemaystermind.freelancerinterview"
   >
 
+  <uses-permission android:name="android.permission.INTERNET" />
+
   <application
+    android:name=".FreelancerApp"
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name"
@@ -18,7 +20,7 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     >
-    <activity android:name=".presentation.MainActivity">
+    <activity android:name=".ui.profile.ProfileActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
