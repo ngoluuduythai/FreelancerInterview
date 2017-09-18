@@ -32,7 +32,7 @@ class FreelancerApp : Application() {
     }
 
     applicationComponent.inject(this)
-    createUserComponent(User("danatoplant"))
+    createUserComponent(User("DanaPotPlant"))
 
     LeakCanary.install(this)
     Timber.plant(DebugTree())

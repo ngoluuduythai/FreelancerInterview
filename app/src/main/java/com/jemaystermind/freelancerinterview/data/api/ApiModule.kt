@@ -7,7 +7,6 @@
 
 package com.jemaystermind.freelancerinterview.data.api
 
-import com.jemaystermind.freelancerinterview.data.FreelancerService
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -21,16 +20,12 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Named
 import javax.inject.Singleton
 
-@Module
+@Module(includes = arrayOf(ApiProviderModule::class))
 class ApiModule {
 
   @Provides
   @Singleton
   fun provideBaseUrl(): HttpUrl = HttpUrl.parse("http://www.freelancer.com/api/")!! // Code smell
-
-  @Provides
-  @Singleton
-  fun provideFreelancerService(retrofit: Retrofit): FreelancerService = retrofit.create(FreelancerService::class.java)
 
   @Provides
   @Singleton

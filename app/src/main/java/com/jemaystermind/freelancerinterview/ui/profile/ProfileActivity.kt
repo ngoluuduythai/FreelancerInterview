@@ -10,7 +10,7 @@ package com.jemaystermind.freelancerinterview.ui.profile
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.jemaystermind.freelancerinterview.R.layout
-import com.jemaystermind.freelancerinterview.data.FreelancerService
+import com.jemaystermind.freelancerinterview.data.FreelancerApi
 import com.jemaystermind.freelancerinterview.data.User
 import com.jemaystermind.freelancerinterview.ui.ActivityComponent
 import com.jemaystermind.freelancerinterview.ui.ActivityModule
@@ -27,7 +27,7 @@ class ProfileActivity : AppCompatActivity() {
   }
 
   @Inject
-  lateinit var service: FreelancerService
+  lateinit var api: FreelancerApi
 
   @Inject
   lateinit var user: User
@@ -36,10 +36,10 @@ class ProfileActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(layout.activity_main)
     activityComponent.inject(this)
-
-    service.profile(user.username).subscribeBy(
+    Timber.i("Username=${user.username}")
+    api.profile(user.username).subscribeBy(
         onNext = {
-          Timber.i(it)
+          Timber.i(it.toString())
         },
         onError = {
           Timber.e("Error fetching the profile of ${user.username}", it)

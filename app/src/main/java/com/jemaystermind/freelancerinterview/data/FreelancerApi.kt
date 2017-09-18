@@ -7,6 +7,7 @@
 
 package com.jemaystermind.freelancerinterview.data
 
+import com.jemaystermind.freelancerinterview.data.api.model.Profile
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -16,8 +17,8 @@ import retrofit2.http.Path
  *
  * @author Jeremy Tecson
  */
-interface FreelancerService {
+interface FreelancerApi {
 
   @GET("/{username}")
-  fun profile(@Path("username") username: String): Observable<String>
+  fun profile(@Path("username") username: String): Observable<Profile>
 }
