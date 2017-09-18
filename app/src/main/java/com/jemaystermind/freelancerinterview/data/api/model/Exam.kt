@@ -5,4 +5,6 @@
  * file 'LICENSE.txt', which is part of this source code package.
  */
 
-include ':app'
+package com.jemaystermind.freelancerinterview.data.api.model
+
+data class Exam(val name: String, val progress: Int)

@@ -5,4 +5,11 @@
  * file 'LICENSE.txt', which is part of this source code package.
  */
 
-include ':app'
+package com.jemaystermind.freelancerinterview.ui
+
+import dagger.Module
+
+@Module
+class ActivityModule {
+  // Do nothing for now
+}
