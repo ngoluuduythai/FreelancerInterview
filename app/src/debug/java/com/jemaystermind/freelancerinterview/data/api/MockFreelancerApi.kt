@@ -13,9 +13,8 @@ import com.jemaystermind.freelancerinterview.data.api.model.Profile
 import com.jemaystermind.freelancerinterview.data.api.model.Skill
 import io.reactivex.Observable
 import retrofit2.mock.BehaviorDelegate
-import javax.inject.Inject
 
-class MockFreelancerApi @Inject constructor(private val delegate: BehaviorDelegate<FreelancerApi>) :
+class MockFreelancerApi(private val delegate: BehaviorDelegate<FreelancerApi>) :
     FreelancerApi {
 
   private val danapotplantProfile: Profile = Profile("DanaPotPlant",
