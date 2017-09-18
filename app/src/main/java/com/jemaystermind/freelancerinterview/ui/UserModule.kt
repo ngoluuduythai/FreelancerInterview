@@ -6,9 +6,9 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class UserModule(private val user: User) {
+class UserModule(private val currentUser: User) {
 
   @Provides
   @UserScope
-  fun currentUser() = user
+  fun provideCurrentUser() = currentUser
 }
