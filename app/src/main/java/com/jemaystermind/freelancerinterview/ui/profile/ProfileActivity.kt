@@ -8,22 +8,19 @@
 package com.jemaystermind.freelancerinterview.ui.profile
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.jemaystermind.freelancerinterview.R.layout
 import com.jemaystermind.freelancerinterview.data.FreelancerApi
 import com.jemaystermind.freelancerinterview.data.User
-import com.jemaystermind.freelancerinterview.ui.ActivityComponent
-import com.jemaystermind.freelancerinterview.ui.ActivityModule
+import com.jemaystermind.freelancerinterview.ui.BaseActivity
 import com.jemaystermind.freelancerinterview.ui.app
-import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
 import javax.inject.Inject
 
-class ProfileActivity : AppCompatActivity() {
+class ProfileActivity : BaseActivity(), ProfileView {
 
-  private val activityComponent: ActivityComponent by lazy {
+  private val component: ProfileComponent by lazy {
     val component = app.userComponent ?: throw IllegalStateException("User component should not be null")
-    component.plus(ActivityModule())
+    component.plus(ProfileModule())
   }
 
   @Inject
@@ -32,18 +29,19 @@ class ProfileActivity : AppCompatActivity() {
   @Inject
   lateinit var user: User
 
+  @Inject
+  lateinit var presenter: ProfilePresenter
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(layout.activity_main)
-    activityComponent.inject(this)
-    Timber.i("Username=${user.username}")
-    api.profile(user.username).subscribeBy(
-        onNext = {
-          Timber.i(it.toString())
-        },
-        onError = {
-          Timber.e("Error fetching the profile of ${user.username}", it)
-        }
-    )
+    component.inject(this)
+    presenter.attachView(this)
+
+    presenter.loadProfile(user.username)
+  }
+
+  override fun showProgress(show: Boolean) {
+    Timber.i("Showing progress")
   }
 }

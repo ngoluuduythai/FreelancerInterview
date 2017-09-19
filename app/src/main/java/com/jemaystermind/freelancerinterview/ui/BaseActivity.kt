@@ -7,9 +7,7 @@
 
 package com.jemaystermind.freelancerinterview.ui
 
-import dagger.Module
+import android.support.v7.app.AppCompatActivity
 
-@Module
-class ActivityModule {
-  // Do nothing for now
+open class BaseActivity : AppCompatActivity() {
 }

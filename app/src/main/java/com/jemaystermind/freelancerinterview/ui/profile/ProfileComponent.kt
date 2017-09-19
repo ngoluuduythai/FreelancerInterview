@@ -5,16 +5,13 @@
  * file 'LICENSE.txt', which is part of this source code package.
  */
 
-package com.jemaystermind.freelancerinterview.ui
+package com.jemaystermind.freelancerinterview.ui.profile
 
 import com.jemaystermind.freelancerinterview.ActivityScope
-import com.jemaystermind.freelancerinterview.ui.profile.ProfileActivity
 import dagger.Subcomponent
 
-@Subcomponent(
-    modules = arrayOf(ActivityModule::class)
-)
 @ActivityScope
-interface ActivityComponent {
+@Subcomponent(modules = arrayOf(ProfileModule::class))
+interface ProfileComponent {
   fun inject(activity: ProfileActivity)
 }
