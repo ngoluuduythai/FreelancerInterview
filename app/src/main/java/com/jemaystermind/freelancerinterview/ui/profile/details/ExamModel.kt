@@ -12,7 +12,7 @@ import com.jemaystermind.freelancerinterview.ui.profile.details.ExamModel.ViewHo
 class ExamModel(val data: ExamViewModel) : EpoxyModelWithHolder<ViewHolder>() {
 
   init {
-    id("exam", data.title + data.progress)
+    id("exam_" + data.title, data.progress.toLong())
   }
 
   @LayoutRes

@@ -14,4 +14,7 @@
   <string name="save_profile">Save Profile</string>
   <string name="title_tab_profile">Profile</string>
   <string name="title_tab_review">Review</string>
+  <string name="label_membership">Membership</string>
+  <string name="error_profile_retrieval">Ooops! Unable to load your profile. Please try again later.</string>
+  <string name="message_try_again">Try Again</string>
 </resources>
