@@ -7,7 +7,7 @@
 
 package com.jemaystermind.freelancerinterview.ui
 
-interface Presenter<in V : MvpView> {
+interface Presenter<in V : BaseMvpView> {
   fun attachView(view: V)
 
   fun detachView()

@@ -7,11 +7,10 @@
 
 package com.jemaystermind.freelancerinterview.ui.profile
 
-import com.jemaystermind.freelancerinterview.ActivityScope
 import dagger.Subcomponent
 
-@ActivityScope
+@ProfileScope
 @Subcomponent(modules = arrayOf(ProfileModule::class))
 interface ProfileComponent {
-  fun inject(activity: ProfileActivity)
+  fun inject(controller: ProfileController)
 }

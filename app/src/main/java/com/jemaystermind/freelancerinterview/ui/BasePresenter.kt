@@ -7,7 +7,16 @@
 
 package com.jemaystermind.freelancerinterview.ui
 
-abstract class BasePresenter<V : MvpView>(var view: V? = null) : Presenter<V> {
+/**
+ * A Presenter that should be extended from for every presenter that handles basic [BaseMvpView]
+ * operations.
+ *
+ * Any presenter could also extend extend from a more generic one [Presenter].
+ */
+abstract class BasePresenter<V : BaseMvpView> : Presenter<V> {
+
+  var view: V? = null
+
   override fun attachView(view: V) {
     this.view = view
   }
@@ -20,8 +29,7 @@ abstract class BasePresenter<V : MvpView>(var view: V? = null) : Presenter<V> {
 
   fun checkViewAttached() {
     if (!isViewAttached()) {
-      throw IllegalStateException("Presenter not initialized. Presenter.attachView(MvpView) " +
-          "must be called.")
+      throw IllegalStateException("Presenter.attachView(BaseMvpView) must be called.")
     }
   }
 }

@@ -11,6 +11,6 @@ import com.jemaystermind.freelancerinterview.data.api.model.Profile
 import com.jemaystermind.freelancerinterview.ui.profile.ProfileRepository
 import io.reactivex.Observable
 
-class ApiProfileRepository(private val api: FreelancerApi) : ProfileRepository {
+class NetworkProfileRepository(private val api: FreelancerApi) : ProfileRepository {
   override fun getProfile(username: String): Observable<Profile> = api.profile(username)
 }

@@ -7,5 +7,9 @@
 
 package com.jemaystermind.freelancerinterview.ui
 
-interface MvpView {
+/**
+ * Base view that will be used for our [Presenter]
+ */
+interface BaseMvpView {
+  // Do nothing
 }

@@ -7,13 +7,17 @@
 
 package com.jemaystermind.freelancerinterview.ui.profile
 
-import com.jemaystermind.freelancerinterview.ui.BasePresenter
 import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
 
-class ProfilePresenter(private val repository: ProfileRepository) : BasePresenter<ProfileView>() {
+/**
+ * A presenter that knows how to handle our profile and interactions with a [ProfileContract.View].
+ *
+ * This presenter also knows how to retrieve a profile from a [ProfileRepository].
+ */
+class ProfilePresenter(private val repository: ProfileRepository) : ProfileContract.Presenter() {
 
-  fun loadProfile(username: String) {
+  override fun loadProfile(username: String) {
     checkViewAttached()
     Timber.i("Loading the profile of $username")
     repository.getProfile(username)
