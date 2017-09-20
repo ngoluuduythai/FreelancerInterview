@@ -9,8 +9,10 @@ package com.jemaystermind.freelancerinterview
 
 import android.app.Application
 import com.jemaystermind.freelancerinterview.data.User
-import com.jemaystermind.freelancerinterview.ui.UserComponent
-import com.jemaystermind.freelancerinterview.ui.UserModule
+import com.jemaystermind.freelancerinterview.injection.ApplicationComponent
+import com.jemaystermind.freelancerinterview.injection.DaggerApplicationComponent
+import com.jemaystermind.freelancerinterview.injection.ui.UserComponent
+import com.jemaystermind.freelancerinterview.injection.ui.UserModule
 import com.squareup.leakcanary.LeakCanary
 import timber.log.Timber
 import timber.log.Timber.DebugTree
@@ -39,7 +41,8 @@ class FreelancerApp : Application() {
   }
 
   fun createUserComponent(user: User) {
-    userComponent = applicationComponent.plus(UserModule(user))
+    userComponent = applicationComponent.plus(
+        UserModule(user))
   }
 
   fun releaseUserComponent() {

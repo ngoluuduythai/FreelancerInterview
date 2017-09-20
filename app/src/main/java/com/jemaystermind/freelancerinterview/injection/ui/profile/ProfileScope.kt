@@ -1,4 +1,4 @@
-package com.jemaystermind.freelancerinterview.ui.profile
+package com.jemaystermind.freelancerinterview.injection.ui.profile
 
 import javax.inject.Scope
 import kotlin.annotation.AnnotationRetention.RUNTIME
