@@ -17,5 +17,9 @@ object ProfileContract {
 
   interface View : BaseMvpView {
     fun showProgress(show: Boolean)
+
+    fun updateProfile(profile: ProfileViewModel)
+
+    fun showErrorProfileRetrieval()
   }
 }

@@ -12,6 +12,8 @@ import com.jemaystermind.freelancerinterview.data.FreelancerApi
 import com.jemaystermind.freelancerinterview.ui.profile.ProfileContract.Presenter
 import com.jemaystermind.freelancerinterview.ui.profile.ProfilePresenter
 import com.jemaystermind.freelancerinterview.ui.profile.ProfileRepository
+import com.jemaystermind.freelancerinterview.ui.profile.details.ProfileDetailsController
+import com.jemaystermind.freelancerinterview.ui.profile.review.ReviewController
 import dagger.Module
 import dagger.Provides
 
@@ -29,4 +31,10 @@ class ProfileModule {
   @ProfileScope
   fun provideProfilePresenter(repository: ProfileRepository): Presenter =
       ProfilePresenter(repository)
+
+  @Provides
+  fun provideProfileDetailsController(): ProfileDetailsController = ProfileDetailsController()
+
+  @Provides
+  fun provideReviewController(): ReviewController = ReviewController()
 }

@@ -11,6 +11,6 @@
   android:gravity="center_vertical"
   android:maxLines="1"
   android:paddingEnd="16dp"
-  android:paddingStart="16dp"
+  android:paddingStart="8dp"
   tools:text="Take more class"
   />
