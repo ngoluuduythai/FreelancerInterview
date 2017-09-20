@@ -11,7 +11,7 @@ import android.app.Activity
 import com.jemaystermind.freelancerinterview.FreelancerApp
 
 /**
- * An extension function that let as easily retrieve a [FreelancerApp] from any [Activity].
+ * An extension function that let us easily retrieve a [FreelancerApp] from any [Activity].
  */
 val Activity.app: FreelancerApp
   get() = application as FreelancerApp

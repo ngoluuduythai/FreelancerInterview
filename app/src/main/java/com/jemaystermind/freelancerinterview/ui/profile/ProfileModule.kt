@@ -7,8 +7,7 @@
 
 package com.jemaystermind.freelancerinterview.ui.profile
 
-import com.jemaystermind.freelancerinterview.ActivityScope
-import com.jemaystermind.freelancerinterview.data.ApiProfileRepository
+import com.jemaystermind.freelancerinterview.data.NetworkProfileRepository
 import com.jemaystermind.freelancerinterview.data.FreelancerApi
 import dagger.Module
 import dagger.Provides
@@ -19,17 +18,12 @@ import dagger.Provides
 @Module
 class ProfileModule {
 
-//  @Provides
-//  @ActivityScope
-//  fun provideProfileRepository(database: SQLiteDatabase): ProfileRepository =
-//      SqliteProfileRepository(database)
+  @Provides
+  @ProfileScope
+  fun provideProfileRepository(api: FreelancerApi): ProfileRepository = NetworkProfileRepository(api)
 
   @Provides
-  @ActivityScope
-  fun provideProfileRepository(api: FreelancerApi): ProfileRepository = ApiProfileRepository(api)
-
-  @Provides
-  @ActivityScope
-  fun provideProfilePresenter(repository: ProfileRepository): ProfilePresenter =
+  @ProfileScope
+  fun provideProfilePresenter(repository: ProfileRepository): ProfileContract.Presenter =
       ProfilePresenter(repository)
 }

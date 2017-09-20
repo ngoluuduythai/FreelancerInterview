@@ -8,8 +8,6 @@
 package com.jemaystermind.freelancerinterview.ui
 
 import com.jemaystermind.freelancerinterview.UserScope
-import com.jemaystermind.freelancerinterview.ui.profile.ProfileComponent
-import com.jemaystermind.freelancerinterview.ui.profile.ProfileModule
 import dagger.Subcomponent
 
 @Subcomponent(
@@ -17,5 +15,5 @@ import dagger.Subcomponent
 )
 @UserScope
 interface UserComponent {
-  fun plus(module: ProfileModule): ProfileComponent
+  fun plus(module: ControllerModule): ControllerComponent
 }

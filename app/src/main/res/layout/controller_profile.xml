@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true"
+  >
+
+  <android.support.design.widget.AppBarLayout
+    android:id="@+id/app_bar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorPrimary"
+    android:fitsSystemWindows="true"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    >
+
+    <!--
+      ~ We should take note that CollapsingToolbarLayout extends from FrameLayout.
+      ~ Thus, drawing it's children depends on how they are ordered.
+      ~ That is, views will be drawn on top of each other.
+      -->
+    <android.support.design.widget.CollapsingToolbarLayout
+      android:id="@+id/collapsing_toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:fitsSystemWindows="true"
+      app:contentScrim="?attr/colorPrimary"
+      app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+      app:titleEnabled="false"
+      >
+
+      <!--
+        ~ When I set the layout_height="match_parent" it somehow fixes the issue
+        ~ of the text being blocked. Don't know why. ¯\_(ツ)_/¯
+        -->
+      <include
+        layout="@layout/profile_header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="64dp"
+        app:layout_scrollFlags="scroll|enterAlways"
+        />
+
+      <!--
+        ~ We should add this at the end so that it will not be blocked by the content being drawn first.
+        ~ Make sure to set layout_gravity="top" to place the Toolbar at the top of the layout.
+        -->
+      <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="top"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        app:layout_collapseMode="pin"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        />
+
+      <!--
+        ~ Make sure to set layout_gravity="bottom" to place the TabLayout at the bottom of this layout.
+        -->
+      <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="fill_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="bottom"
+        app:tabIndicatorColor="?android:attr/textColorPrimary"
+        app:tabIndicatorHeight="4dp"
+        app:tabSelectedTextColor="?android:attr/textColorPrimary"
+        />
+
+    </android.support.design.widget.CollapsingToolbarLayout>
+
+  </android.support.design.widget.AppBarLayout>
+
+  <android.support.v4.view.ViewPager
+    android:id="@+id/pager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="?attr/actionBarSize"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    />
+
+  <Button
+    android:id="@+id/save_profile"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@color/colorPrimary"
+    android:text="@string/save_profile"
+    android:textColor="@android:color/white"
+    />
+
+</android.support.design.widget.CoordinatorLayout>
