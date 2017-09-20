@@ -5,12 +5,14 @@
  * file 'LICENSE.txt', which is part of this source code package.
  */
 
-package com.jemaystermind.freelancerinterview.ui.profile
+package com.jemaystermind.freelancerinterview.injection.ui.profile
 
+import com.jemaystermind.freelancerinterview.ui.profile.ProfileController
 import dagger.Subcomponent
 
 @ProfileScope
-@Subcomponent(modules = arrayOf(ProfileModule::class))
+@Subcomponent(modules = arrayOf(
+    ProfileModule::class))
 interface ProfileComponent {
   fun inject(controller: ProfileController)
 }

@@ -13,7 +13,10 @@ import timber.log.Timber
 /**
  * A presenter that knows how to handle our profile and interactions with a [ProfileContract.View].
  *
- * This presenter also knows how to retrieve a profile from a [ProfileRepository].
+ * This presenter's jobs are the following:
+ *
+ * 1. It knows how to retrieve a profile from a [ProfileRepository].
+ * 2. Converts the data from the presentation layer to our data layer and vice versa.
  */
 class ProfilePresenter(private val repository: ProfileRepository) : ProfileContract.Presenter() {
 

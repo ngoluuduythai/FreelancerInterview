@@ -18,6 +18,8 @@ import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.support.RouterPagerAdapter
 import com.jemaystermind.freelancerinterview.R
+import com.jemaystermind.freelancerinterview.injection.ui.profile.ProfileComponent
+import com.jemaystermind.freelancerinterview.injection.ui.profile.ProfileModule
 import com.jemaystermind.freelancerinterview.ui.ButterKnifeController
 import com.jemaystermind.freelancerinterview.ui.MainActivity
 import com.jemaystermind.freelancerinterview.ui.disable
@@ -28,6 +30,7 @@ import com.jemaystermind.freelancerinterview.ui.profile.ProfileController.TabIte
 import com.jemaystermind.freelancerinterview.ui.profile.details.ProfileDetailsController
 import com.jemaystermind.freelancerinterview.ui.profile.review.ReviewController
 import kotlinx.android.synthetic.main.profile_header.view.username
+import timber.log.Timber
 import javax.inject.Inject
 
 class ProfileController : ButterKnifeController, ProfileContract.View {
@@ -69,7 +72,8 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
   lateinit var username: String
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
-    profileComponent = (activity as MainActivity).controllerComponent.plus(ProfileModule())
+    profileComponent = (activity as MainActivity).controllerComponent.plus(
+        ProfileModule())
     profileComponent?.inject(this)
     return super.onCreateView(inflater, container)
   }
@@ -171,6 +175,6 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
   }
 
   override fun showProgress(show: Boolean) {
-    TODO("not implemented")
+    Timber.i("Show/hide progress")
   }
 }
