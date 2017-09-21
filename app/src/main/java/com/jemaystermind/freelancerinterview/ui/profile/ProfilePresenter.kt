@@ -33,7 +33,7 @@ class ProfilePresenter(private val repository: ProfileRepository) : ProfileContr
           view?.showProgress(false)
         }
         .map {
-          val coverPhotoUrl = "https://i.imgur.com/DvpvklR.png"
+          val coverPhotoUrl = it.coverPhotoUrl
           val profilePhotoUrl = it.avatarUrl
           val name = it.username
           val handle = it.username
@@ -48,7 +48,7 @@ class ProfilePresenter(private val repository: ProfileRepository) : ProfileContr
         }
         .subscribeBy(
             onNext = {
-              Timber.i("Profile=$it")
+              Timber.i("Profile retrieved the repository=$it")
               view?.updateProfile(it)
             },
             onError = {

@@ -12,6 +12,9 @@ import kotlinx.android.synthetic.main.controller_profile_details.view.recyler
 
 class ProfileDetailsController : ButterKnifeController {
 
+  /**
+   * Used when this [Controller][ProfileDetailsController] is recreated.
+   */
   constructor() : super()
 
   constructor(bundle: Bundle): super(bundle)

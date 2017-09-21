@@ -19,6 +19,7 @@ data class Profile(
     val skills: List<Skill> = emptyList(),
     val exams: List<Exam> = emptyList(),
     @Json(name = "avatar") val avatarUrl: String = "",
+    val coverPhotoUrl: String = "",
     val currentSkillCount: Int = 0,
     val maxSkillCount: Int = 0
 )
