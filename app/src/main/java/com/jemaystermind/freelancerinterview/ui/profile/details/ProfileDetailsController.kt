@@ -9,7 +9,6 @@ import com.jemaystermind.freelancerinterview.R
 import com.jemaystermind.freelancerinterview.ui.ButterKnifeController
 import com.jemaystermind.freelancerinterview.ui.inflate
 import kotlinx.android.synthetic.main.controller_profile_details.view.recyler
-import timber.log.Timber
 
 class ProfileDetailsController : ButterKnifeController {
 
@@ -23,9 +22,11 @@ class ProfileDetailsController : ButterKnifeController {
       container.inflate(R.layout.controller_profile_details)
 
   override fun onViewBound(view: View) {
-    view.recyler.layoutManager = LinearLayoutManager(applicationContext)
+    view.recyler.layoutManager = LinearLayoutManager(activity)
     view.recyler.adapter = epoxyController.adapter
-    epoxyController.requestModelBuild()
-    Timber.i("About controller view bound done..")
+  }
+
+  fun updateProfileDetails(details: ProfileDetails) {
+    epoxyController.setData(details)
   }
 }

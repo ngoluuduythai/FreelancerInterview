@@ -5,9 +5,9 @@
  * file 'LICENSE.txt', which is part of this source code package.
  */
 
-package com.jemaystermind.freelancerinterview.ui
+package com.jemaystermind.freelancerinterview.injection.ui
 
-import com.jemaystermind.freelancerinterview.UserScope
+import com.jemaystermind.freelancerinterview.injection.UserScope
 import dagger.Subcomponent
 
 @Subcomponent(

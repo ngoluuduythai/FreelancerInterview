@@ -5,11 +5,12 @@
  * file 'LICENSE.txt', which is part of this source code package.
  */
 
-package com.jemaystermind.freelancerinterview
+package com.jemaystermind.freelancerinterview.injection
 
+import com.jemaystermind.freelancerinterview.FreelancerApp
 import com.jemaystermind.freelancerinterview.data.DataModule
-import com.jemaystermind.freelancerinterview.ui.UserComponent
-import com.jemaystermind.freelancerinterview.ui.UserModule
+import com.jemaystermind.freelancerinterview.injection.ui.UserComponent
+import com.jemaystermind.freelancerinterview.injection.ui.UserModule
 import dagger.Component
 import javax.inject.Singleton
 

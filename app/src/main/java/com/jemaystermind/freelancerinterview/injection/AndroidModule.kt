@@ -5,9 +5,10 @@
  * file 'LICENSE.txt', which is part of this source code package.
  */
 
-package com.jemaystermind.freelancerinterview
+package com.jemaystermind.freelancerinterview.injection
 
 import android.content.Context
+import com.jemaystermind.freelancerinterview.FreelancerApp
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

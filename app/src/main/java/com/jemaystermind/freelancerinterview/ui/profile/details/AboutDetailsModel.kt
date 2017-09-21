@@ -1,26 +1,25 @@
 package com.jemaystermind.freelancerinterview.ui.profile.details
 
-import android.widget.CheckBox
+import android.widget.TextView
 import butterknife.BindView
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.jemaystermind.freelancerinterview.R
 import com.jemaystermind.freelancerinterview.ui.BaseEpoxyHolder
-import com.jemaystermind.freelancerinterview.ui.profile.details.SkillModel.ViewHolder
+import com.jemaystermind.freelancerinterview.ui.profile.details.AboutDetailsModel.ViewHolder
 
-@EpoxyModelClass(layout = R.layout.item_skill)
-abstract class SkillModel : EpoxyModelWithHolder<ViewHolder>() {
+@EpoxyModelClass(layout = R.layout.item_about_details)
+abstract class AboutDetailsModel : EpoxyModelWithHolder<ViewHolder>() {
 
-  @EpoxyAttribute lateinit var skill: SkillViewModel
+  @EpoxyAttribute lateinit var details: String
 
   override fun bind(holder: ViewHolder) {
-    holder.skill.isChecked = skill.checked
-    holder.skill.text = skill.title
+    holder.details.text = details
   }
 
   class ViewHolder : BaseEpoxyHolder() {
-    @BindView(R.id.skill)
-    lateinit var skill: CheckBox
+    @BindView(R.id.details)
+    lateinit var details: TextView
   }
 }

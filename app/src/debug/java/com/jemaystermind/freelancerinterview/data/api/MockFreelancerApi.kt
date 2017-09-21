@@ -17,12 +17,16 @@ import retrofit2.mock.BehaviorDelegate
 class MockFreelancerApi(private val delegate: BehaviorDelegate<FreelancerApi>) :
     FreelancerApi {
 
-  private val danapotplantProfile: Profile = Profile("DanaPotPlant",
+  private val danapotplantProfile: Profile = Profile(1, "DanaPotPlant",
+      about = "Hi, I'm Dana, a pot plant. I love to pot plant myself in a pot. It is a very refreshing feeling. We will really work well together.",
       bidPeriod = 7,
-      skills = listOf(Skill("User Interface Design"), Skill("User Experience Design")),
-      exams = listOf(Exam("Aussie English G'Day Mate!", 80), Exam("SketchApp", 30)),
-      avatarUrl = "http://www.freelancer.com/img/danaplant.png")
-  private val emptyProfile = Profile()
+      skills = listOf(Skill(1, "User Interface Design"), Skill(2, "User Experience Design")),
+      exams = listOf(Exam(1, "Aussie English G'Day Mate!", 80), Exam(2, "SketchApp", 30)),
+      avatarUrl = "https://i.imgur.com/DvpvklR.png",
+      currentSkillCount = 5,
+      maxSkillCount = 250
+  )
+  private val emptyProfile = Profile(-1)
 
   override fun profile(username: String): Observable<Profile> {
     val profile: Profile = when (username.toLowerCase()) {
