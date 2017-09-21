@@ -40,5 +40,7 @@ class ApiProviderModule {
 
   @Provides
   @Singleton
-  fun provideNetworkBehavior(): NetworkBehavior = NetworkBehavior.create(Random(30))
+  fun provideNetworkBehavior(): NetworkBehavior = NetworkBehavior.create(Random()).apply {
+    setErrorPercent(50)
+  }
 }
