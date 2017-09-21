@@ -1,0 +1,19 @@
+/*
+ * Copyright (c) 2017 Jeremy Tecson
+ *
+ * This file is subject to the terms and conditions defined in
+ * file 'LICENSE.txt', which is part of this source code package.
+ */
+
+apply plugin: 'pmd'
+
+task pmd(type: Pmd) {
+  ruleSetFiles = files("${project.rootDir}/tools/rules-pmd.xml")
+  source = fileTree('src/main/java/')
+
+  reports {
+    xml.enabled = false
+    html.enabled = true
+    html.setDestination(file("${project.buildDir}/outputs/pmd/pmd.html"))
+  }
+}

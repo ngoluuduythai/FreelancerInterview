@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2017 Jeremy Tecson
+  ~
+  ~ This file is subject to the terms and conditions defined in
+  ~ file 'LICENSE.txt', which is part of this source code package.
+  -->
+
+<CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/skill"
+  android:layout_width="match_parent"
+  android:layout_height="?attr/listPreferredItemHeightSmall"
+  android:layout_marginEnd="8dp"
+  android:layout_marginStart="8dp"
+  android:background="?attr/selectableItemBackground"
+  android:checked="true"
+  android:ellipsize="end"
+  android:maxLines="@integer/single_line"
+  android:paddingEnd="@dimen/spacing_normal"
+  android:paddingStart="@dimen/spacing_normal"
+  tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  />

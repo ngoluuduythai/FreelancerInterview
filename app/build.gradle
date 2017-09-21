@@ -1,5 +1,30 @@
+/*
+ * Copyright (c) 2017 Jeremy Tecson
+ *
+ * This file is subject to the terms and conditions defined in
+ * file 'LICENSE.txt', which is part of this source code package.
+ */
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.squareup.sqldelight'
+
+// Static code analysis tools
+apply from: "${project.rootDir}/tools/script-lint.gradle"
+apply from: "${project.rootDir}/tools/script-findbugs.gradle"
+apply from: "${project.rootDir}/tools/script-pmd.gradle"
+
+// Manifest version information!
+def versionMajor = 0
+def versionMinor = 0
+def versionPatch = 0
+def versionBuild = 0 // bump for dogfood builds, public betas, etc.
+
+kapt {
+  correctErrorTypes = true
+}
 
 android {
   compileSdkVersion 26
@@ -7,26 +32,106 @@ android {
 
   defaultConfig {
     applicationId "com.jemaystermind.freelancerinterview"
-    minSdkVersion 19
+
+    minSdkVersion 21
     targetSdkVersion 26
-    versionCode 1
-    versionName "1.0"
+
+    versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
+    versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+
+    vectorDrawables.useSupportLibrary = true
+
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
 
   buildTypes {
+    debug {
+      applicationIdSuffix '.debug'
+      versionNameSuffix '-DEBUG'
+    }
+
     release {
       minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  productFlavors {
+    flavorDimensions 'env'
+
+    internal {
+      dimension 'env'
+      applicationIdSuffix 'internal'
+    }
+
+    production {
+      dimension 'env'
     }
   }
 }
 
+final CONSTRAINT_LAYOUT_VERSION = '1.0.2'
+final TIMBER_VERSION = '4.5.1'
+final BUTTERKNIFE_VERSION = '8.8.1'
+final LEAK_CANARY_VERSION = '1.5.1'
+final RETROFIT_VERSION = '2.3.0'
+final OKHTTP_VERSION = '3.9.0'
+final AUTO_VALUE_VERSION = '1.5'
+final RX_JAVA_VERSION = '2.1.3'
+final RX_KOTLIN_VERSION = '2.1.0'
+final RX_ANDROID_VERSION = '2.0.1'
+final RX_BINDING_VERSION = '2.0.0'
+final DAGGER_VERSION = '2.11'
+final CONDUCTOR_VERSION = '2.1.4'
+final GLIDE_VERSION = '4.1.1'
+final ROUNDED_IMAGEVIEW_VERSION = '2.3.0'
+final SQLBRITE_VERSION = '2.0.0'
+final EPOXY_VERSION = '2.5.0'
+
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
-  compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-  compile 'com.android.support:appcompat-v7:26.1.0'
-  compile 'com.android.support.constraint:constraint-layout:1.0.2'
+  compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$KOTLIN_VERSION"
+  compile "com.android.support:appcompat-v7:$versions.SUPPORT_LIBRARY"
+  compile "com.android.support:design:$versions.SUPPORT_LIBRARY"
+  compile "com.android.support.constraint:constraint-layout:${CONSTRAINT_LAYOUT_VERSION}"
+
+  compile "com.jakewharton.timber:timber:${TIMBER_VERSION}"
+
+  compile "com.jakewharton:butterknife:${BUTTERKNIFE_VERSION}"
+  kapt "com.jakewharton:butterknife-compiler:${BUTTERKNIFE_VERSION}"
+
+  debugCompile "com.squareup.leakcanary:leakcanary-android:${LEAK_CANARY_VERSION}"
+  releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:${LEAK_CANARY_VERSION}"
+
+  compile "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
+  compile "com.squareup.retrofit2:converter-moshi:${RETROFIT_VERSION}"
+  compile "com.squareup.retrofit2:retrofit-mock:${RETROFIT_VERSION}"
+  compile "com.squareup.retrofit2:adapter-rxjava2:${RETROFIT_VERSION}"
+  compile "com.squareup.okhttp3:okhttp:${OKHTTP_VERSION}"
+  compile "com.squareup.okhttp3:logging-interceptor:${OKHTTP_VERSION}"
+
+  provided "com.google.auto.value:auto-value:${AUTO_VALUE_VERSION}"
+  kapt "com.google.auto.value:auto-value:${AUTO_VALUE_VERSION}"
+
+  compile "io.reactivex.rxjava2:rxjava:${RX_JAVA_VERSION}"
+  compile "io.reactivex.rxjava2:rxkotlin:${RX_KOTLIN_VERSION}"
+  compile "io.reactivex.rxjava2:rxandroid:${RX_ANDROID_VERSION}"
+  compile "com.jakewharton.rxbinding2:rxbinding-kotlin:${RX_BINDING_VERSION}"
+
+  compile "com.google.dagger:dagger:${DAGGER_VERSION}"
+  kapt "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
+
+  compile "com.bluelinelabs:conductor:${CONDUCTOR_VERSION}"
+  compile "com.bluelinelabs:conductor-support:${CONDUCTOR_VERSION}"
+
+  compile "com.github.bumptech.glide:glide:${GLIDE_VERSION}"
+  kapt "com.github.bumptech.glide:compiler:${GLIDE_VERSION}"
+  compile "com.makeramen:roundedimageview:${ROUNDED_IMAGEVIEW_VERSION}"
+
+  compile "com.squareup.sqlbrite2:sqlbrite:${SQLBRITE_VERSION}"
+  compile "com.squareup.sqlbrite2:sqlbrite-kotlin:${SQLBRITE_VERSION}"
+
+  compile "com.airbnb.android:epoxy:${EPOXY_VERSION}"
+  kapt "com.airbnb.android:epoxy-processor:${EPOXY_VERSION}"
 
   testCompile 'junit:junit:4.12'
   androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {

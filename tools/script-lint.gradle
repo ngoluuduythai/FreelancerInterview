@@ -1,0 +1,16 @@
+/*
+ * Copyright (c) 2017 Jeremy Tecson
+ *
+ * This file is subject to the terms and conditions defined in
+ * file 'LICENSE.txt', which is part of this source code package.
+ */
+
+android {
+  lintOptions {
+    lintConfig file("$project.rootDir/tools/rules-lint.xml")
+    htmlOutput file("$project.buildDir/outputs/lint/lint.html")
+    warningsAsErrors true
+    xmlReport false
+    abortOnError false
+  }
+}

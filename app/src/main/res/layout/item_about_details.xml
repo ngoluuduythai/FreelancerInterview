@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2017 Jeremy Tecson
+  ~
+  ~ This file is subject to the terms and conditions defined in
+  ~ file 'LICENSE.txt', which is part of this source code package.
+  -->
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/summary"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:ellipsize="end"
+  android:lineSpacingExtra="@dimen/spacing_text_summary"
+  android:maxLines="@integer/max_summary_lines"
+  android:paddingBottom="@dimen/spacing_smaller"
+  android:paddingEnd="@dimen/spacing_normal"
+  android:paddingStart="@dimen/spacing_normal"
+  android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+  tools:text="@string/lorem"
+  />

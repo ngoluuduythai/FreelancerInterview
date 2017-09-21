@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2017 Jeremy Tecson
+  ~
+  ~ This file is subject to the terms and conditions defined in
+  ~ file 'LICENSE.txt', which is part of this source code package.
+  -->
+
+<resources>
+  <!-- Typical spacing between two views -->
+  <dimen name="spacing_giant">64dp</dimen>
+  <dimen name="spacing_huge">42dp</dimen>
+  <dimen name="spacing_larger">24dp</dimen>
+  <dimen name="spacing_large">20dp</dimen>
+  <dimen name="spacing_normal">16dp</dimen>
+  <dimen name="spacing_small">12dp</dimen>
+  <dimen name="spacing_smaller">8dp</dimen>
+  <dimen name="spacing_tiny">4dp</dimen>
+
+  <dimen name="cover_photo_height">160dp</dimen>
+  <dimen name="spacing_text_summary">4dp</dimen>
+  <dimen name="membership_button_height">32dp</dimen>
+
+  <!-- Profile photo -->
+  <dimen name="profile_photo_width">96dp</dimen>
+  <dimen name="profile_photo_height">96dp</dimen>
+  <dimen name="profile_photo_elevation">4dp</dimen>
+  <dimen name="profile_space_elevation">4dp</dimen>
+  <dimen name="profile_photo_border_width">2dp</dimen>
+  <dimen name="profile_photo_corner_radius">3dp</dimen>
+
+  <!-- DON'T EDIT THIS! THIS SHOULD ALWAYS BE ZERO -->
+  <dimen name="elevation_none">0dp</dimen>
+
+  <!-- Review -->
+  <dimen name="spacing_review_empty_details">4dp</dimen>
+</resources>

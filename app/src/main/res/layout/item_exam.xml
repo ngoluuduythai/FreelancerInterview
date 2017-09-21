@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2017 Jeremy Tecson
+  ~
+  ~ This file is subject to the terms and conditions defined in
+  ~ file 'LICENSE.txt', which is part of this source code package.
+  -->
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="?attr/listPreferredItemHeightSmall"
+  android:background="?attr/selectableItemBackground"
+  >
+
+  <CheckBox
+    android:id="@+id/exam"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_smaller"
+    android:layout_marginStart="@dimen/spacing_smaller"
+    android:checked="true"
+    android:ellipsize="end"
+    android:gravity="center_vertical"
+    android:maxLines="@integer/single_line"
+    android:paddingEnd="@dimen/spacing_normal"
+    android:paddingStart="@dimen/spacing_normal"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toLeftOf="@+id/guideline"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    />
+
+  <ProgressBar
+    android:id="@+id/exam_progress"
+    android:theme="@style/ProgressBar"
+    style="?android:attr/progressBarStyleHorizontal"
+    android:layout_width="96dp"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_smaller"
+    android:layout_marginEnd="@dimen/spacing_normal"
+    android:layout_marginStart="@dimen/spacing_smaller"
+    android:layout_marginTop="@dimen/spacing_smaller"
+    app:layout_constraintBottom_toBottomOf="@+id/exam"
+    app:layout_constraintLeft_toRightOf="@id/guideline"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/exam"
+    tools:progress="50"
+    />
+
+  <android.support.constraint.Guideline
+    android:id="@+id/guideline"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintGuide_percent="0.675"
+    />
+
+</android.support.constraint.ConstraintLayout>

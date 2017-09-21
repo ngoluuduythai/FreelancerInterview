@@ -1,7 +1,13 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+/*
+ * Copyright (c) 2017 Jeremy Tecson
+ *
+ * This file is subject to the terms and conditions defined in
+ * file 'LICENSE.txt', which is part of this source code package.
+ */
 
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-  ext.kotlin_version = '1.1.4-3'
+  ext.KOTLIN_VERSION = '1.1.4-3'
 
   repositories {
     google()
@@ -10,7 +16,8 @@ buildscript {
 
   dependencies {
     classpath 'com.android.tools.build:gradle:2.3.3'
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
+    classpath 'com.squareup.sqldelight:gradle-plugin:0.6.1'
 
     // NOTE: Do not place your application dependencies here; they belong
     // in the individual module build.gradle files
@@ -21,6 +28,23 @@ allprojects {
   repositories {
     google()
     jcenter()
+  }
+
+  ext.versions = [
+      'SUPPORT_LIBRARY': '26.1.0'
+  ]
+
+  configurations.all {
+    resolutionStrategy {
+      eachDependency { details ->
+        // Force all of the primary support libraries to use the same version.
+        if (details.requested.group == 'com.android.support' &&
+            details.requested.name != 'multidex' &&
+            details.requested.name != 'multidex-instrumentation') {
+          details.useVersion versions.SUPPORT_LIBRARY
+        }
+      }
+    }
   }
 }
 
