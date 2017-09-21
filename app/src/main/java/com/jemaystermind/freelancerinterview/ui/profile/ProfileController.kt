@@ -14,6 +14,7 @@ import android.support.design.widget.Snackbar
 import android.support.design.widget.TabLayout
 import android.support.design.widget.TabLayout.OnTabSelectedListener
 import android.support.design.widget.TabLayout.Tab
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
@@ -265,6 +266,7 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
         .setAction(R.string.message_try_again) {
           presenter.retryProfileRetrieval(username)
         }
+        .setActionTextColor(ContextCompat.getColor(activity, R.color.green))
         .show()
   }
 
