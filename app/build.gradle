@@ -83,6 +83,7 @@ final RX_BINDING_VERSION = '2.0.0'
 final DAGGER_VERSION = '2.11'
 final CONDUCTOR_VERSION = '2.1.4'
 final GLIDE_VERSION = '4.1.1'
+final ROUNDED_IMAGEVIEW_VERSION = '2.3.0'
 final SQLBRITE_VERSION = '2.0.0'
 final EPOXY_VERSION = '2.5.0'
 
@@ -124,6 +125,7 @@ dependencies {
 
   compile "com.github.bumptech.glide:glide:${GLIDE_VERSION}"
   kapt "com.github.bumptech.glide:compiler:${GLIDE_VERSION}"
+  compile "com.makeramen:roundedimageview:${ROUNDED_IMAGEVIEW_VERSION}"
 
   compile "com.squareup.sqlbrite2:sqlbrite:${SQLBRITE_VERSION}"
   compile "com.squareup.sqlbrite2:sqlbrite-kotlin:${SQLBRITE_VERSION}"

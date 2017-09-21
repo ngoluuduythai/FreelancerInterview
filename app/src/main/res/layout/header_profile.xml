@@ -1,58 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2017 Jeremy Tecson
+  ~
+  ~ This file is subject to the terms and conditions defined in
+  ~ file 'LICENSE.txt', which is part of this source code package.
+  -->
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/header_container"
+  android:id="@+id/header_profile_container"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:background="@color/white"
+  android:paddingBottom="@dimen/spacing_smaller"
   android:theme="@style/ThemeOverlay.AppCompat.Light"
   >
 
-  <ImageView
-    android:id="@+id/cover_photo"
+  <!-- Apparently, a background must be set to show the elevation -->
+  <View
+    android:id="@+id/space"
     android:layout_width="0dp"
-    android:layout_height="160dp"
-    android:layout_marginLeft="0dp"
-    android:layout_marginRight="0dp"
-    android:layout_marginTop="0dp"
-    android:scaleType="centerCrop"
+    android:layout_height="@dimen/cover_photo_height"
+    android:background="?attr/colorPrimary"
+    android:elevation="@dimen/profile_space_elevation"
     app:layout_constraintHorizontal_bias="0.0"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:srcCompat="@drawable/daily_grind"
     />
 
-  <ImageView
+  <com.makeramen.roundedimageview.RoundedImageView
     android:id="@+id/profile_photo"
-    android:layout_width="96dp"
-    android:layout_height="96dp"
-    android:layout_marginBottom="0dp"
-    android:layout_marginStart="16dp"
-    app:layout_constraintBottom_toBottomOf="@+id/cover_photo"
+    android:layout_width="@dimen/profile_photo_width"
+    android:layout_height="@dimen/profile_photo_height"
+    android:layout_marginStart="@dimen/spacing_normal"
+    android:elevation="@dimen/profile_photo_elevation"
+    app:layout_constraintBottom_toBottomOf="@+id/space"
     app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/cover_photo"
+    app:layout_constraintTop_toBottomOf="@+id/space"
     app:layout_constraintVertical_bias="0.5"
-    app:srcCompat="@drawable/profile"
+    app:riv_border_color="@color/light_gray"
+    app:riv_border_width="@dimen/profile_photo_border_width"
+    app:riv_corner_radius="@dimen/profile_photo_corner_radius"
+    tools:src="@drawable/profile"
     />
 
   <Button
     android:id="@+id/membership"
+    style="@style/ButtonMembership"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginEnd="16dp"
-    android:layout_marginTop="8dp"
+    android:layout_height="@dimen/membership_button_height"
+    android:layout_marginEnd="@dimen/spacing_normal"
+    android:layout_marginTop="@dimen/spacing_normal"
+    android:background="@drawable/button_bg_membership"
+    android:drawableStart="@drawable/ic_add_blue"
     android:text="@string/label_membership"
+    app:elevation="@dimen/elevation_none"
     app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/cover_photo"
+    app:layout_constraintTop_toBottomOf="@+id/space"
     />
 
   <TextView
     android:id="@+id/name"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="8dp"
+    android:layout_marginStart="@dimen/spacing_normal"
+    android:layout_marginTop="@dimen/spacing_smaller"
     android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/profile_photo"
@@ -63,8 +77,8 @@
     android:id="@+id/handle"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="4dp"
+    android:layout_marginStart="@dimen/spacing_normal"
+    android:layout_marginTop="@dimen/spacing_tiny"
     android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/name"

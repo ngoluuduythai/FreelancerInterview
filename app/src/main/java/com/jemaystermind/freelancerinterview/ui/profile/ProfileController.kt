@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2017 Jeremy Tecson
+ *
+ * This file is subject to the terms and conditions defined in
+ * file 'LICENSE.txt', which is part of this source code package.
+ */
+
 package com.jemaystermind.freelancerinterview.ui.profile
 
 import android.os.Bundle
@@ -38,7 +45,9 @@ import com.jemaystermind.freelancerinterview.ui.profile.details.ProfileDetails
 import com.jemaystermind.freelancerinterview.ui.profile.details.ProfileDetailsController
 import com.jemaystermind.freelancerinterview.ui.profile.review.ReviewController
 import com.jemaystermind.freelancerinterview.ui.toggle
+import timber.log.Timber
 import javax.inject.Inject
+import javax.inject.Provider
 
 class ProfileController : ButterKnifeController, ProfileContract.View {
 
@@ -49,6 +58,9 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
     PROFILE, REVIEW
   }
 
+  /**
+   * Used when this [Controller][ProfileController] is recreated.
+   */
   constructor() : super()
 
   constructor(username: String) : super(Bundle().apply {
@@ -65,11 +77,15 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
   lateinit var presenter: ProfileContract.Presenter
 
   @Inject
-  lateinit var profileDetailsController: ProfileDetailsController
+  lateinit var profileDetailsControllerProvider: Provider<ProfileDetailsController>
+  lateinit var currentProfileDetailsController: ProfileDetailsController
 
   @Inject
-  lateinit var reviewController: ReviewController
+  lateinit var reviewControllerProvider: Provider<ReviewController>
+  lateinit var currentReviewController: ReviewController
 
+  // Wanted to use kotlin android extensions
+  // but it looks ugly when using it outside the view inflation. So many ???
   @BindView(R.id.toolbar)
   lateinit var toolbar: Toolbar
 
@@ -78,9 +94,6 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
 
   @BindView(R.id.pager)
   lateinit var pager: ViewPager
-
-  @BindView(R.id.cover_photo)
-  lateinit var coverPhoto: ImageView
 
   @BindView(R.id.profile_photo)
   lateinit var profilePhoto: ImageView
@@ -97,7 +110,7 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
   @BindView(R.id.progress)
   lateinit var loadingBar: ProgressBar
 
-  @BindView(R.id.header_container)
+  @BindView(R.id.header_profile_container)
   lateinit var headerContainer: ViewGroup
 
   @BindView(R.id.collapsing_toolbar)
@@ -107,6 +120,8 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
   lateinit var coordinatorLayout: CoordinatorLayout
 
   lateinit var username: String
+
+  private lateinit var pageAdapter: RouterPagerAdapter
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
     profileComponent = (activity as MainActivity).controllerComponent
@@ -125,6 +140,7 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
 
     setupActionBar()
     setupViewpager()
+    setupTabs()
   }
 
   override fun onAttach(view: View) {
@@ -148,15 +164,21 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
   }
 
   private fun setupViewpager() {
-    pager.adapter = object : RouterPagerAdapter(this) {
-      override fun configureRouter(router: Router, position: Int) {
-        val tabPosition = TabItems.values()[position]
-        val controller = when (tabPosition) {
-          PROFILE -> profileDetailsController
-          REVIEW -> reviewController
-        }
+    pageAdapter = object : RouterPagerAdapter(this) {
 
+      override fun configureRouter(router: Router, position: Int) {
+        Timber.i("Configuring controller for position $position")
         if (!router.hasRootController()) {
+          val tabPosition = TabItems.values()[position]
+          val controller = when (tabPosition) {
+            PROFILE -> profileDetailsControllerProvider.get().also {
+              currentProfileDetailsController = it
+            }
+
+            REVIEW -> reviewControllerProvider.get().also {
+              currentReviewController = it
+            }
+          }
           router.setRoot(RouterTransaction.with(controller))
         }
       }
@@ -172,7 +194,14 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
       }
     }
 
+    pager.adapter = pageAdapter
+  }
+
+  private fun setupTabs() {
+    tabs.setupWithViewPager(pager)
+
     // Show/Hide "Save Profile" depending on the tab selected
+    // Not sure if it's the best way of animating this view. ¯\_(ツ)_/¯
     tabs.addOnTabSelectedListener(object : OnTabSelectedListener {
       val posY = saveProfile.translationY
 
@@ -200,9 +229,9 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
         // Do nothing
       }
     })
-
-    tabs.setupWithViewPager(pager)
   }
+
+  private lateinit var profileDetails: ProfileDetails
 
   private fun setupActionBar() {
     val appCompatActivity = activity as AppCompatActivity
@@ -222,7 +251,7 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
     loadingBar.toggle(show)
 
     // Show/Hide content depending if the loading bar's visibility
-    pager.toggle(!show)
+    pager.visibility = if (show) View.INVISIBLE else View.VISIBLE
     saveProfile.toggle(!show)
     collapsingToolbar.toggle(!show) // TODO Jemay: Show the action bar when the loading bar is shown
   }
@@ -243,15 +272,11 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
     if (isDestroyed)
       return
 
-    // Update cover photo
-    GlideApp.with(activity)
-        .load(profile.coverPhotoUrl)
-        .centerCrop()
-        .into(coverPhoto)
-
     // Update profile picture
     GlideApp.with(activity)
         .load(profile.profilePhotoUrl)
+        .placeholder(R.drawable.profile)
+        .fitCenter()
         .centerCrop()
         .into(profilePhoto)
 
@@ -273,6 +298,8 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
 
     val profileDetails = ProfileDetails(summary, skills, exams, currentSkillCount, maxSkillCount,
         titleAbout, titleSkills, titleExams)
-    profileDetailsController.updateProfileDetails(profileDetails)
+
+    this.profileDetails = profileDetails
+    currentProfileDetailsController.updateProfileDetails(profileDetails)
   }
 }

@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2017 Jeremy Tecson
+  ~
+  ~ This file is subject to the terms and conditions defined in
+  ~ file 'LICENSE.txt', which is part of this source code package.
+  -->
+
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/title"
   android:layout_width="match_parent"
   android:layout_height="?attr/listPreferredItemHeightSmall"
   android:background="?attr/selectableItemBackground"
-  android:drawablePadding="8dp"
+  android:drawablePadding="@dimen/spacing_large"
   android:drawableStart="@drawable/ic_add"
   android:ellipsize="end"
   android:gravity="center_vertical"
-  android:maxLines="1"
-  android:paddingEnd="16dp"
-  android:paddingStart="8dp"
+  android:maxLines="@integer/single_line"
+  android:paddingEnd="@dimen/spacing_normal"
+  android:paddingStart="@dimen/spacing_small"
   tools:text="Take more class"
   />

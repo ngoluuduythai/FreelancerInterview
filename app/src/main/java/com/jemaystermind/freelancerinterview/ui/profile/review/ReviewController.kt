@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2017 Jeremy Tecson
+ *
+ * This file is subject to the terms and conditions defined in
+ * file 'LICENSE.txt', which is part of this source code package.
+ */
+
 package com.jemaystermind.freelancerinterview.ui.profile.review
 
 import android.os.Bundle
@@ -12,6 +19,9 @@ import kotlinx.android.synthetic.main.controller_profile_review.view.recyler
 
 class ReviewController : ButterKnifeController {
 
+  /**
+   * Used when this [Controller][ReviewController] is recreated.
+   */
   constructor() : super()
 
   constructor(bundle: Bundle) : super(bundle)
