@@ -23,6 +23,7 @@ class MockFreelancerApi(private val delegate: BehaviorDelegate<FreelancerApi>) :
       skills = listOf(Skill(1, "User Interface Design"), Skill(2, "User Experience Design")),
       exams = listOf(Exam(1, "Aussie English G'Day Mate!", 80), Exam(2, "SketchApp", 30)),
       avatarUrl = "https://i.imgur.com/DvpvklR.png",
+      coverPhotoUrl = "https://i.imgur.com/DvpvklR.png",
       currentSkillCount = 5,
       maxSkillCount = 250
   )

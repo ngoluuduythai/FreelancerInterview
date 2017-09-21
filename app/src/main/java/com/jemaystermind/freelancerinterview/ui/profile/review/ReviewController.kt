@@ -12,6 +12,9 @@ import kotlinx.android.synthetic.main.controller_profile_review.view.recyler
 
 class ReviewController : ButterKnifeController {
 
+  /**
+   * Used when this [Controller][ReviewController] is recreated.
+   */
   constructor() : super()
 
   constructor(bundle: Bundle) : super(bundle)

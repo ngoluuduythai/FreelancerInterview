@@ -19,7 +19,7 @@ abstract class AboutDetailsModel : EpoxyModelWithHolder<ViewHolder>() {
   }
 
   class ViewHolder : BaseEpoxyHolder() {
-    @BindView(R.id.details)
+    @BindView(R.id.summary)
     lateinit var details: TextView
   }
 }
