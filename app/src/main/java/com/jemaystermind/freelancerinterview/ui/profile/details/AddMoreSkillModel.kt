@@ -3,21 +3,18 @@ package com.jemaystermind.freelancerinterview.ui.profile.details
 import android.widget.TextView
 import butterknife.BindString
 import butterknife.BindView
+import com.airbnb.epoxy.EpoxyAttribute
+import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.jemaystermind.freelancerinterview.R
 import com.jemaystermind.freelancerinterview.ui.BaseEpoxyHolder
 import com.jemaystermind.freelancerinterview.ui.profile.details.AddMoreSkillModel.ViewHolder
 
-class AddMoreSkillModel(private val currentSkillCount: Int,
-    private val maxSkillCount: Int) : EpoxyModelWithHolder<ViewHolder>() {
+@EpoxyModelClass(layout = R.layout.item_add_more_skill)
+abstract class AddMoreSkillModel : EpoxyModelWithHolder<ViewHolder>() {
 
-  init {
-    id("add_more_skill_header")
-  }
-
-  override fun getDefaultLayout(): Int = R.layout.item_add_more_skill
-
-  override fun createNewHolder(): ViewHolder = ViewHolder()
+  @EpoxyAttribute var currentSkillCount: Int = 0
+  @EpoxyAttribute var maxSkillCount: Int = 0
 
   override fun bind(holder: ViewHolder) {
     holder.title.text = String.format(holder.titleText, currentSkillCount, maxSkillCount)

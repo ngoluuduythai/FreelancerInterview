@@ -7,4 +7,4 @@
 
 package com.jemaystermind.freelancerinterview.data.api.model
 
-data class Skill(val name: String)
+data class Skill(val id: Long, val name: String)

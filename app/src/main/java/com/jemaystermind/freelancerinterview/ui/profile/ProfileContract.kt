@@ -13,6 +13,8 @@ import com.jemaystermind.freelancerinterview.ui.BasePresenter
 object ProfileContract {
   abstract class Presenter : BasePresenter<View>() {
     abstract fun loadProfile(username: String)
+
+    abstract fun retryProfileRetrieval(username: String)
   }
 
   interface View : BaseMvpView {

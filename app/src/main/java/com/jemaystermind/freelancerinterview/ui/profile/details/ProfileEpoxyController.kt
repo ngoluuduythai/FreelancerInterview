@@ -1,49 +1,45 @@
 package com.jemaystermind.freelancerinterview.ui.profile.details
 
-import com.airbnb.epoxy.EpoxyController
-import timber.log.Timber
+import com.airbnb.epoxy.AutoModel
+import com.airbnb.epoxy.TypedEpoxyController
 
-class ProfileEpoxyController : EpoxyController() {
-  private var about: String = ""
-  private var skills = emptyList<SkillViewModel>()
-  private var exams = emptyList<ExamViewModel>()
-  private var currentSkillCount = 0
-  private var maxSkillCount = 0
+class ProfileEpoxyController : TypedEpoxyController<ProfileDetails>() {
 
-  fun setAboutDetails(about: String) {
-    this.about = about
-  }
+  // It's better to add thiThis models doesn't changed
+  @AutoModel lateinit var aboutModel: AboutDetailsModel_
+  @AutoModel lateinit var addMoreSkillsModel: AddMoreSkillModel_
+  @AutoModel lateinit var addMoreExamModel: AddMoreExamModel_
+  @AutoModel lateinit var headerAboutModel: HeaderModel_
+  @AutoModel lateinit var headerSkillsModel: HeaderModel_
+  @AutoModel lateinit var headerExamModel: HeaderModel_
 
-  fun setSkills(skills: List<SkillViewModel>) {
-    this.skills = skills
-  }
-
-  fun setExams(exams: List<ExamViewModel>) {
-    this.exams = exams
-  }
-
-  fun updateSkillCount(currentSkillCount: Int, maxSkillCount: Int) {
-    this.currentSkillCount = currentSkillCount
-    this.maxSkillCount = maxSkillCount
-  }
-
-  override fun buildModels() {
-    Timber.i("Building recyler models...")
-    Timber.i("Skills=$skills")
-    Timber.i("Exams=$exams")
-
+  override fun buildModels(details: ProfileDetails) {
     // About section
-    add(HeaderModel("About"))
-    add(AboutDetailsModel(about))
+    headerAboutModel.title(details.titleAbout).addTo(this)
+    aboutModel.details(details.summary).addTo(this)
 
     // Skills section
-    add(HeaderModel("My Skills"))
-    add(skills.map { SkillModel(it) })
-    add(AddMoreSkillModel(currentSkillCount, maxSkillCount))
+    headerSkillsModel.title(details.titleSkills).addTo(this)
+
+    // Add the skills view model after converting
+    details.skills.map {
+      SkillModel_().id("skills", it.id)
+          .skill(it)
+    }.forEach { it.addTo(this) }
+
+    addMoreSkillsModel.currentSkillCount(details.currentSkillCount)
+        .maxSkillCount(details.maxSkillCount)
+        .addTo(this)
 
     // Exam section
-    add(HeaderModel("My Exams"))
-    add(exams.map { ExamModel(it) })
-    add(AddMoreExamModel())
+    headerExamModel.title(details.titleExam).addTo(this)
+
+    // Add the exam view model after converting
+    details.exams.map {
+      ExamModel_().id("exams", it.id)
+          .exam(it)
+    }.forEach { it.addTo(this) }
+
+    addMoreExamModel.addTo(this)
   }
 }

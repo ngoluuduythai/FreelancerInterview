@@ -24,26 +24,9 @@ class ProfileDetailsController : ButterKnifeController {
   override fun onViewBound(view: View) {
     view.recyler.layoutManager = LinearLayoutManager(activity)
     view.recyler.adapter = epoxyController.adapter
-    epoxyController.requestModelBuild()
   }
 
-  fun setAboutDetails(about: String) {
-    epoxyController.setAboutDetails(about)
-  }
-
-  fun setSkills(skills: List<SkillViewModel>) {
-    epoxyController.setSkills(skills)
-  }
-
-  fun setExams(exams: List<ExamViewModel>) {
-    epoxyController.setExams(exams)
-  }
-
-  fun updateSkillCount(currentSkillCount: Int, maxSkillCount: Int) {
-    epoxyController.updateSkillCount(currentSkillCount, maxSkillCount)
-  }
-
-  fun notifyDataSetChanged() {
-    epoxyController.requestModelBuild()
+  fun updateProfileDetails(details: ProfileDetails) {
+    epoxyController.setData(details)
   }
 }
