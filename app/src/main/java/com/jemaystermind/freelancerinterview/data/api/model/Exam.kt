@@ -7,4 +7,4 @@
 
 package com.jemaystermind.freelancerinterview.data.api.model
 
-data class Exam(val name: String, val progress: Int)
+data class Exam(val id: Long, val name: String, val progress: Int)

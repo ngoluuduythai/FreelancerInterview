@@ -34,10 +34,10 @@ import com.jemaystermind.freelancerinterview.ui.enable
 import com.jemaystermind.freelancerinterview.ui.inflate
 import com.jemaystermind.freelancerinterview.ui.profile.ProfileController.TabItems.PROFILE
 import com.jemaystermind.freelancerinterview.ui.profile.ProfileController.TabItems.REVIEW
+import com.jemaystermind.freelancerinterview.ui.profile.details.ProfileDetails
 import com.jemaystermind.freelancerinterview.ui.profile.details.ProfileDetailsController
 import com.jemaystermind.freelancerinterview.ui.profile.review.ReviewController
 import com.jemaystermind.freelancerinterview.ui.toggle
-import timber.log.Timber
 import javax.inject.Inject
 
 class ProfileController : ButterKnifeController, ProfileContract.View {
@@ -224,9 +224,7 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
     // Show/Hide content depending if the loading bar's visibility
     pager.toggle(!show)
     saveProfile.toggle(!show)
-
-    // TODO Jemay: Show the action bar when the loading bar is shown
-    collapsingToolbar.toggle(!show)
+    collapsingToolbar.toggle(!show) // TODO Jemay: Show the action bar when the loading bar is shown
   }
 
   override fun showErrorProfileRetrieval() {
@@ -236,7 +234,7 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
     // Show a snack bar with a "Try again" option
     Snackbar.make(coordinatorLayout, R.string.error_profile_retrieval, Snackbar.LENGTH_INDEFINITE)
         .setAction(R.string.message_try_again) {
-          presenter.loadProfile(username)
+          presenter.retryProfileRetrieval(username)
         }
         .show()
   }
@@ -244,8 +242,6 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
   override fun updateProfile(profile: ProfileViewModel) {
     if (isDestroyed)
       return
-
-    Timber.i("Updating user's profile..")
 
     // Update cover photo
     GlideApp.with(activity)
@@ -265,14 +261,18 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
     // Update handle label
     handle.text = profile.handle
 
-    with(profileDetailsController) {
-      setAboutDetails(profile.about)
-      setSkills(profile.skills)
-      updateSkillCount(profile.currentSkillCount, profile.maxSkillCount)
-      setExams(profile.exams)
+    // Update our profile details
+    val summary = profile.about
+    val skills = profile.skills
+    val currentSkillCount = profile.currentSkillCount
+    val maxSkillCount = profile.maxSkillCount
+    val exams = profile.exams
+    val titleAbout = activity?.getString(R.string.header_title_about)!!
+    val titleSkills = activity?.getString(R.string.header_title_skills)!!
+    val titleExams = activity?.getString(R.string.header_title_exam)!!
 
-      // Notify changes
-      notifyDataSetChanged()
-    }
+    val profileDetails = ProfileDetails(summary, skills, exams, currentSkillCount, maxSkillCount,
+        titleAbout, titleSkills, titleExams)
+    profileDetailsController.updateProfileDetails(profileDetails)
   }
 }

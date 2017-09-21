@@ -22,6 +22,10 @@ def versionMinor = 0
 def versionPatch = 0
 def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
+kapt {
+  correctErrorTypes = true
+}
+
 android {
   compileSdkVersion 26
   buildToolsVersion "26.0.1"
@@ -125,6 +129,7 @@ dependencies {
   compile "com.squareup.sqlbrite2:sqlbrite-kotlin:${SQLBRITE_VERSION}"
 
   compile "com.airbnb.android:epoxy:${EPOXY_VERSION}"
+  kapt "com.airbnb.android:epoxy-processor:${EPOXY_VERSION}"
 
   testCompile 'junit:junit:4.12'
   androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {

@@ -29,7 +29,7 @@ class ProfilePresenter(private val repository: ProfileRepository) : ProfileContr
         .doOnSubscribe {
           view?.showProgress(true)
         }
-        .doAfterNext {
+        .doOnNext {
           view?.showProgress(false)
         }
         .map {
@@ -38,12 +38,13 @@ class ProfilePresenter(private val repository: ProfileRepository) : ProfileContr
           val name = it.username
           val handle = it.username
           val about = it.about
-          val skills = it.skills.map { SkillViewModel(true, it.name) }
-          val exams = it.exams.map { ExamViewModel(true, it.name, it.progress) }
-//          val currentSkillCount = it.currentSkillCount
-//          val maxSkillCount = it.maxSkillCount
+          val skills = it.skills.map { SkillViewModel(it.id, true, it.name) }
+          val exams = it.exams.map { ExamViewModel(it.id, true, it.name, it.progress) }
+          val currentSkillCount = it.currentSkillCount
+          val maxSkillCount = it.maxSkillCount
 
-          ProfileViewModel(coverPhotoUrl, profilePhotoUrl, name, handle, about, skills, exams)
+          ProfileViewModel(coverPhotoUrl, profilePhotoUrl, name, handle, about, skills, exams,
+              currentSkillCount, maxSkillCount)
         }
         .subscribeBy(
             onNext = {
@@ -56,5 +57,9 @@ class ProfilePresenter(private val repository: ProfileRepository) : ProfileContr
               view?.showErrorProfileRetrieval()
             }
         )
+  }
+
+  override fun retryProfileRetrieval(username: String) {
+    loadProfile(username)
   }
 }

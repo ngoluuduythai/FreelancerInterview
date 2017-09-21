@@ -4,17 +4,15 @@ import android.view.View
 import android.widget.TextView
 import butterknife.BindString
 import butterknife.BindView
+import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.jemaystermind.freelancerinterview.R
 import com.jemaystermind.freelancerinterview.R.id
 import com.jemaystermind.freelancerinterview.ui.BaseEpoxyHolder
 import com.jemaystermind.freelancerinterview.ui.profile.details.AddMoreExamModel.ViewHolder
 
-class AddMoreExamModel : EpoxyModelWithHolder<ViewHolder>() {
-
-  init {
-    id("add_more_class_header")
-  }
+@EpoxyModelClass(layout = R.layout.item_add_more_class)
+abstract class AddMoreExamModel : EpoxyModelWithHolder<ViewHolder>() {
 
   override fun getDefaultLayout(): Int = R.layout.item_add_more_class
 
