@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2017 Jeremy Tecson
+ *
+ * This file is subject to the terms and conditions defined in
+ * file 'LICENSE.txt', which is part of this source code package.
+ */
+
 package com.jemaystermind.freelancerinterview.ui.profile
 
 import android.os.Bundle
@@ -88,9 +95,6 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
   @BindView(R.id.pager)
   lateinit var pager: ViewPager
 
-  @BindView(R.id.cover_photo)
-  lateinit var coverPhoto: ImageView
-
   @BindView(R.id.profile_photo)
   lateinit var profilePhoto: ImageView
 
@@ -106,7 +110,7 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
   @BindView(R.id.progress)
   lateinit var loadingBar: ProgressBar
 
-  @BindView(R.id.header_container)
+  @BindView(R.id.header_profile_container)
   lateinit var headerContainer: ViewGroup
 
   @BindView(R.id.collapsing_toolbar)
@@ -247,7 +251,7 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
     loadingBar.toggle(show)
 
     // Show/Hide content depending if the loading bar's visibility
-    pager.visibility = if(show) View.INVISIBLE else View.VISIBLE
+    pager.visibility = if (show) View.INVISIBLE else View.VISIBLE
     saveProfile.toggle(!show)
     collapsingToolbar.toggle(!show) // TODO Jemay: Show the action bar when the loading bar is shown
   }
@@ -268,15 +272,11 @@ class ProfileController : ButterKnifeController, ProfileContract.View {
     if (isDestroyed)
       return
 
-    // Update cover photo
-    GlideApp.with(activity)
-        .load(profile.coverPhotoUrl)
-        .centerCrop()
-        .into(coverPhoto)
-
     // Update profile picture
     GlideApp.with(activity)
         .load(profile.profilePhotoUrl)
+        .placeholder(R.drawable.profile)
+        .fitCenter()
         .centerCrop()
         .into(profilePhoto)
 
