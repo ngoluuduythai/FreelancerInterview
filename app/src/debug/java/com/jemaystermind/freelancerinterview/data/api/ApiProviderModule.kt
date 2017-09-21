@@ -15,6 +15,7 @@ import retrofit2.mock.BehaviorDelegate
 import retrofit2.mock.MockRetrofit
 import retrofit2.mock.NetworkBehavior
 import java.util.Random
+import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -40,7 +41,13 @@ class ApiProviderModule {
 
   @Provides
   @Singleton
-  fun provideNetworkBehavior(): NetworkBehavior = NetworkBehavior.create(Random()).apply {
-    setErrorPercent(50)
-  }
+  fun provideNetworkBehavior(@Named("error_percentage") errorPercent: Int): NetworkBehavior =
+      NetworkBehavior.create().apply {
+        setErrorPercent(errorPercent)
+      }
+
+  @Provides
+  @Singleton
+  @Named("error_percentage")
+  fun provideErrorPercentage(): Int = 30
 }
