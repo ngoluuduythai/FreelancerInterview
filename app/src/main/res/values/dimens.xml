@@ -31,4 +31,7 @@
 
   <!-- DON'T EDIT THIS! THIS SHOULD ALWAYS BE ZERO -->
   <dimen name="elevation_none">0dp</dimen>
+
+  <!-- Review -->
+  <dimen name="spacing_review_empty_details">4dp</dimen>
 </resources>
