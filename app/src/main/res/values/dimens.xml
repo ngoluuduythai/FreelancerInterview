@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- typical spacing between two views -->
+  <dimen name="spacing_giant">64dp</dimen>
+  <dimen name="spacing_huge">42dp</dimen>
+  <dimen name="spacing_larger">24dp</dimen>
+  <dimen name="spacing_large">20dp</dimen>
+  <dimen name="spacing_normal">16dp</dimen>
+  <dimen name="spacing_small">12dp</dimen>
+  <dimen name="spacing_smaller">8dp</dimen>
+  <dimen name="spacing_tiny">4dp</dimen>
+  <dimen name="cover_photo_height">160dp</dimen>
+  <dimen name="profile_photo_width">96dp</dimen>
+  <dimen name="profile_photo_height">96dp</dimen>
+  <dimen name="spacing_text_summary">4dp</dimen>
+</resources>
