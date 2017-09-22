@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2017 Jeremy Tecson
   ~
   ~ This file is subject to the terms and conditions defined in
@@ -55,6 +54,8 @@
     android:layout_marginTop="@dimen/spacing_normal"
     android:background="@drawable/button_bg_membership"
     android:drawableStart="@drawable/ic_add_blue"
+    android:paddingEnd="@dimen/spacing_normal"
+    android:paddingStart="@dimen/spacing_smaller"
     android:text="@string/label_membership"
     app:elevation="@dimen/elevation_none"
     app:layout_constraintRight_toRightOf="parent"
