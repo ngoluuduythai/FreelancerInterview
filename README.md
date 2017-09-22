@@ -1,23 +1,24 @@
-Freelancer.com Android Developer Test
+## Freelancer.com Android Developer Test
 
-UI Achieved:
-![profile](./art/profile.png =250px)
+### UI Achieved:
+<img src="https://github.com/jemaystermind/FreelancerInterview/blob/master/art/profile.png" width=300/>
 
-<img src="https://github.com/jemaystermind/FreelancerInterview/tree/master/art/profile.png" alt="profile" style="width: 200px;"/>
+<img src="https://github.com/jemaystermind/FreelancerInterview/blob/master/art/profile_details.png" width=300/>
 
-<img src="https://github.com/jemaystermind/FreelancerInterview/blob/master/art/profile.png" width=500/>
+<img src="https://github.com/jemaystermind/FreelancerInterview/blob/master/art/error_loading_profile.png" width=300/>
 
-![profile_details](art/profile_details.png)
-![review](art/review.png)
-![menus](art/menus.png)
-![error_loading_profile](art/error_loading_profile.png)
+<img src="https://github.com/jemaystermind/FreelancerInterview/blob/master/art/review.png" width=300/>
 
-Requirements:
+<img src="https://github.com/jemaystermind/FreelancerInterview/blob/master/art/menus.png" width=300/>
 
-1. Given the API endpoint and the returned json blob below, create a repository to fetch the
+### Requirements:
+
+1. Given the API endpoint and the returned json blob below. Create a repository to fetch the
 data with the repository pattern through RxJava, Dagger 2, and Retrofit library.
-( www.freelancer.com/api/danapotplant )
-Note: This is a dummy api endpoint and will not work. Please treat this is a future spec release
+
+> Endpoint: www.freelancer.com/api/danapotplant
+
+> Note: This is a dummy api endpoint and will not work. Please treat this is a future spec release
 and implement with the dummy data.
 
 ```json
@@ -27,23 +28,23 @@ and implement with the dummy data.
   "attachments": null,
   "bidperiod": 7,
   "skills": [
-              {
-                "name": "User Interface Design"
-              },
-              {
-                "name": "User Experience Design"
-              }
-            ],
+  	{
+  	  "name": "User Interface Design"
+    },
+	{
+  	  "name": "User Experience Design"
+    }
+  ],
   "exams": [
-              {
-                "name": "Aussie English G’Day Mate!",
-                "progress": 80
-              },
-              {
-                "name": "SkectApp",
-                "progress": 30
-              }
-           ],
+  	{
+  	  "name": "Aussie English G’Day Mate!",
+      "progress": 80
+    },
+	{
+  	  "name": "SkectApp",
+      "progress": 30
+    }
+  ],
   "avatar": "www.freelancer.com/img/danaplant.png"
 }
 ```
@@ -53,12 +54,13 @@ and implement with the dummy data.
    
    ![Requirement](art/ui_requirement.png)
    
-Notes:
+## Notes:
   1.  Profile and reviews are tabs so they can be slide and switched
   2.  CoordinatorLayout animation
     ![Coordinator Animation](art/coordinator_layout_animation.gif)
+  
   3. Default same blue color throughout
 
-Bonus
+## Bonus
   * Bonus save profile button is sticky (as you scroll up and down, it is always visible)
   * Bonus menu option in the toolbar will have Share, Save, and Export option
