@@ -3,7 +3,7 @@ Freelancer.com Android Developer Test
 UI Achieved:
 ![profile](./art/profile.png =250px)
 
-<img src="./art/profile.png" alt="profile" style="width: 200px;"/>
+<img src="https://github.com/jemaystermind/FreelancerInterview/tree/master/art/profile.png" alt="profile" style="width: 200px;"/>
 
 ![profile_details](art/profile_details.png)
 ![review](art/review.png)
