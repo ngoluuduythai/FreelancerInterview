@@ -1,17 +1,9 @@
 ## Freelancer.com Android Developer Test
 
-### UI Achieved:
-<img src="https://github.com/jemaystermind/FreelancerInterview/blob/master/art/profile.png" width=300/>
+### UI Achieved
+<img src="https://github.com/jemaystermind/FreelancerInterview/blob/master/art/profile.png" width=300/> <img src="https://github.com/jemaystermind/FreelancerInterview/blob/master/art/profile_details.png" width=300/> <img src="https://github.com/jemaystermind/FreelancerInterview/blob/master/art/error_loading_profile.png" width=300/> <img src="https://github.com/jemaystermind/FreelancerInterview/blob/master/art/review.png" width=300/><img src="https://github.com/jemaystermind/FreelancerInterview/blob/master/art/menus.png" width=300/>
 
-<img src="https://github.com/jemaystermind/FreelancerInterview/blob/master/art/profile_details.png" width=300/>
-
-<img src="https://github.com/jemaystermind/FreelancerInterview/blob/master/art/error_loading_profile.png" width=300/>
-
-<img src="https://github.com/jemaystermind/FreelancerInterview/blob/master/art/review.png" width=300/>
-
-<img src="https://github.com/jemaystermind/FreelancerInterview/blob/master/art/menus.png" width=300/>
-
-### Requirements:
+### Requirements
 
 1. Given the API endpoint and the returned json blob below. Create a repository to fetch the
 data with the repository pattern through RxJava, Dagger 2, and Retrofit library.
@@ -49,7 +41,7 @@ and implement with the dummy data.
 }
 ```
 
-2. Using the data from your previous answer, create the view below with the MVP pattern
+2. Using the data from your previous answer. Create the view below with the MVP pattern
    and the use of CoordinatorLayout.
    
    ![Requirement](art/ui_requirement.png)
@@ -58,7 +50,7 @@ and implement with the dummy data.
   1.  Profile and reviews are tabs so they can be slide and switched
   2.  CoordinatorLayout animation
     ![Coordinator Animation](art/coordinator_layout_animation.gif)
-  
+    
   3. Default same blue color throughout
 
 ## Bonus
