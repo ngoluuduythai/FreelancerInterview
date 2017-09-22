@@ -1,7 +1,7 @@
 Freelancer.com Android Developer Test
 
 UI Achieved:
-![profile](art/profile.png)
+![profile](./art/profile.png =250px)
 ![profile_details](art/profile_details.png)
 ![review](art/review.png)
 ![menus](art/menus.png)
@@ -57,4 +57,3 @@ Notes:
 Bonus
   * Bonus save profile button is sticky (as you scroll up and down, it is always visible)
   * Bonus menu option in the toolbar will have Share, Save, and Export option
-
