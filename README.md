@@ -5,7 +5,7 @@ UI Achieved:
 
 <img src="https://github.com/jemaystermind/FreelancerInterview/tree/master/art/profile.png" alt="profile" style="width: 200px;"/>
 
-<img src="https://github.com/jemaystermind/FreelancerInterview/tree/master/art/profile.png" style="width: 200px"/>
+<img src="https://github.com/jemaystermind/FreelancerInterview/tree/master/art/profile.png" width=200 height=200/>
 
 ![profile_details](art/profile_details.png)
 ![review](art/review.png)
