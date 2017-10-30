@@ -9,7 +9,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'com.squareup.sqldelight'
 
 // Static code analysis tools
 apply from: "${project.rootDir}/tools/script-lint.gradle"
@@ -84,57 +83,53 @@ final DAGGER_VERSION = '2.11'
 final CONDUCTOR_VERSION = '2.1.4'
 final GLIDE_VERSION = '4.1.1'
 final ROUNDED_IMAGEVIEW_VERSION = '2.3.0'
-final SQLBRITE_VERSION = '2.0.0'
 final EPOXY_VERSION = '2.5.0'
 
 dependencies {
-  compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$KOTLIN_VERSION"
-  compile "com.android.support:appcompat-v7:$versions.SUPPORT_LIBRARY"
-  compile "com.android.support:design:$versions.SUPPORT_LIBRARY"
-  compile "com.android.support.constraint:constraint-layout:${CONSTRAINT_LAYOUT_VERSION}"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$KOTLIN_VERSION"
+  implementation "com.android.support:appcompat-v7:$versions.SUPPORT_LIBRARY"
+  implementation "com.android.support:design:$versions.SUPPORT_LIBRARY"
+  implementation "com.android.support.constraint:constraint-layout:${CONSTRAINT_LAYOUT_VERSION}"
 
-  compile "com.jakewharton.timber:timber:${TIMBER_VERSION}"
+  implementation "com.jakewharton.timber:timber:${TIMBER_VERSION}"
 
-  compile "com.jakewharton:butterknife:${BUTTERKNIFE_VERSION}"
+  implementation "com.jakewharton:butterknife:${BUTTERKNIFE_VERSION}"
   kapt "com.jakewharton:butterknife-compiler:${BUTTERKNIFE_VERSION}"
 
-  debugCompile "com.squareup.leakcanary:leakcanary-android:${LEAK_CANARY_VERSION}"
-  releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:${LEAK_CANARY_VERSION}"
+  debugImplementation "com.squareup.leakcanary:leakcanary-android:${LEAK_CANARY_VERSION}"
+  releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${LEAK_CANARY_VERSION}"
 
-  compile "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
-  compile "com.squareup.retrofit2:converter-moshi:${RETROFIT_VERSION}"
-  compile "com.squareup.retrofit2:retrofit-mock:${RETROFIT_VERSION}"
-  compile "com.squareup.retrofit2:adapter-rxjava2:${RETROFIT_VERSION}"
-  compile "com.squareup.okhttp3:okhttp:${OKHTTP_VERSION}"
-  compile "com.squareup.okhttp3:logging-interceptor:${OKHTTP_VERSION}"
+  implementation "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
+  implementation "com.squareup.retrofit2:converter-moshi:${RETROFIT_VERSION}"
+  implementation "com.squareup.retrofit2:retrofit-mock:${RETROFIT_VERSION}"
+  implementation "com.squareup.retrofit2:adapter-rxjava2:${RETROFIT_VERSION}"
+  implementation "com.squareup.okhttp3:okhttp:${OKHTTP_VERSION}"
+  implementation "com.squareup.okhttp3:logging-interceptor:${OKHTTP_VERSION}"
 
   provided "com.google.auto.value:auto-value:${AUTO_VALUE_VERSION}"
   kapt "com.google.auto.value:auto-value:${AUTO_VALUE_VERSION}"
 
-  compile "io.reactivex.rxjava2:rxjava:${RX_JAVA_VERSION}"
-  compile "io.reactivex.rxjava2:rxkotlin:${RX_KOTLIN_VERSION}"
-  compile "io.reactivex.rxjava2:rxandroid:${RX_ANDROID_VERSION}"
-  compile "com.jakewharton.rxbinding2:rxbinding-kotlin:${RX_BINDING_VERSION}"
+  implementation "io.reactivex.rxjava2:rxjava:${RX_JAVA_VERSION}"
+  implementation "io.reactivex.rxjava2:rxkotlin:${RX_KOTLIN_VERSION}"
+  implementation "io.reactivex.rxjava2:rxandroid:${RX_ANDROID_VERSION}"
+  implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:${RX_BINDING_VERSION}"
 
-  compile "com.google.dagger:dagger:${DAGGER_VERSION}"
+  implementation "com.google.dagger:dagger:${DAGGER_VERSION}"
   kapt "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
 
-  compile "com.bluelinelabs:conductor:${CONDUCTOR_VERSION}"
-  compile "com.bluelinelabs:conductor-support:${CONDUCTOR_VERSION}"
+  implementation "com.bluelinelabs:conductor:${CONDUCTOR_VERSION}"
+  implementation "com.bluelinelabs:conductor-support:${CONDUCTOR_VERSION}"
 
-  compile "com.github.bumptech.glide:glide:${GLIDE_VERSION}"
+  implementation "com.github.bumptech.glide:glide:${GLIDE_VERSION}"
+  implementation "com.makeramen:roundedimageview:${ROUNDED_IMAGEVIEW_VERSION}"
   kapt "com.github.bumptech.glide:compiler:${GLIDE_VERSION}"
-  compile "com.makeramen:roundedimageview:${ROUNDED_IMAGEVIEW_VERSION}"
 
-  compile "com.squareup.sqlbrite2:sqlbrite:${SQLBRITE_VERSION}"
-  compile "com.squareup.sqlbrite2:sqlbrite-kotlin:${SQLBRITE_VERSION}"
-
-  compile "com.airbnb.android:epoxy:${EPOXY_VERSION}"
+  implementation "com.airbnb.android:epoxy:${EPOXY_VERSION}"
   kapt "com.airbnb.android:epoxy-processor:${EPOXY_VERSION}"
 
-  testCompile 'junit:junit:4.12'
-  testCompile "com.google.truth:truth:0.36"
-  androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+  testImplementation 'junit:junit:4.12'
+  testImplementation "com.google.truth:truth:0.36"
+  androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
     exclude group: 'com.android.support', module: 'support-annotations'
   })
 }
